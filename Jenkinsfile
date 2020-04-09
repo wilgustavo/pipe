@@ -1,20 +1,12 @@
-pipeline{
-    agent any
-    stages {
-        stage('init') {
-            steps {
-                echo "Hola!"
-            }
-        }
-        stage('build') {
-            steps {
-                sh 'chmod 777 mvnw && ./mvnw package'
-            }
-        }
-        stage('image') {
-            steps {
-                docker.build("wilgustavo/pipe:1.0")
-            }
-        }
+node {
+    def app
+
+    stage('build') {
+        sh 'chmod 777 mvnw && ./mvnw package'
     }
+
+    stage('Build image') {
+        app = docker.build("wilgustavo/pipe:1.0")
+    }
+
 }
