@@ -1,5 +1,5 @@
 pipeline{
-    agent { docker { image 'maven:3.3.3' } }
+    agent any
     stages {
         stage('init') {
             steps {
@@ -8,7 +8,7 @@ pipeline{
         }
         stage('build') {
             steps {
-                sh 'mvn --version'
+                sh 'chmod 777 mvnw && ./mvnw package'
             }
         }
     }
