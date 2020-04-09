@@ -1,7 +1,6 @@
 pipeline{
     agent any
     stages {
-        def app
         stage('init') {
             steps {
                 echo "Hola!"
@@ -14,7 +13,7 @@ pipeline{
         }
         stage('image') {
             steps {
-                app = docker.build("wilgustavo/pipe:1.0")
+                docker.build("wilgustavo/pipe:1.0")
             }
         }
     }
